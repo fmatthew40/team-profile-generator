@@ -33,19 +33,6 @@ function generate(data) {
   </div>
 </div>
 
-<div class="card" style="width: 18rem;">
-<div class="card-body">
-  <h5 class="card-title">Manager</h5>
-  <p class="card-text"> ${data.managerName} </p>
-</div>
-<ul class="list-group list-group-flush">
-  <li class="list-group-item">ID Number: ${ data.managerId}</li>
-  <li class="list-group-item">Office Number: ${ data.managerOffice}</li>
-</ul>
-<div class="card-body">
-  <a href="#" class="card-link">${data.managerEmail}</a>
-</div>
-</div>
 
 
 </body>

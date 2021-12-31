@@ -1,8 +1,5 @@
-
-
 // link to created html page
 const generatePage = require('./src/generatefile.js');
-
 
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
@@ -11,8 +8,6 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 
 const employeeArr  = [];
-
-
 
 const managerData = () => {
     return inquirer.prompt (
@@ -67,47 +62,10 @@ function choose() {
             break;
         case 'Finished':
             console.log('Your team is set!')
-            createTeam();
+            newFile();
     }
 })
 };
-
-// const role = () => {
-//     return inquirer.prompt (
-//     [{
-//     type: 'list',
-//     message: 'Would you like to add an engineer or an intern?',
-//     name: 'select',
-//     choices: ["Engineer", "Intern"]
-//     }]
-//     )
-// .then(answer => {
-//     console.log(answer);
-//     if (select = "Engineer") {
-//     setEngineer();
-//     } if (select = "Intern") {
-//     setIntern();
-//     }
-// })
-// };
-
-
-// function role() {
-//     return inquirer.prompt (
-//     [{
-//     type: 'list',
-//     message: 'Would you like to add an engineer or an intern?',
-//     name: 'select',
-//     choices: ["Engineer", "Intern"]
-//     }]
-//     )
-// .then(answer => {
-//     console.log(answer);
-//     if (role.select = "Engineer") {
-//     setEngineer();
-//     }    
-// })
-// };
 
 const setEngineer = () => {
     return inquirer.prompt (
@@ -139,67 +97,10 @@ const setEngineer = () => {
         const engineer = new Engineer(engineerName, engineerId, engineerEmail, engineerGithub);
         employeeArr.push(engineer);
         console.log(engineer);
+        choose();
     }
     })
-
-
-    // .then(teamset => {
-
-    //     let {memberName, memberId, memberEmail, engineerGithub, internSchool, addMember} = teamset;
-
-
-
-    // .then(teamSet => {
-    //     const {memberName, memberId, memberEmail, engineerGithub, internSchool} = teamSet; 
-    //     if (selectRole.select = "Engineer"){
-    //     const engineer = new Engineer(memberName, memberId, memberEmail, engineerGithub);
-    //     employeeArr.push(engineer);
-    // }
-    //     if (selectRole.select = "Intern") {
-    //     const intern = new Intern(memberName, memberId, memberEmail, internSchool);
-    //     employeeArr.push(intern);
-    // }
-    //     if (selectRole.addMember = true) {
-    //         return selectRole(employeeArr);
-    //     }if (selectRole.addMember === false) {
-    //         const newfile = (fileName, answers)  =>{
-    //             let content = generatePage(answers);
-    //             fs.writeFile(fileName, content, function (error) {
-                    
-    //                 if (error) {
-    //                     return console.log(error)
-    //                 }
-    //                 console.log('Your file was created successfully!')
-    //             });
-    //         }
-            
-    //     }
-
-    
-
 };
-
-
-
-
-
-function addEngineer() {
-    inquirer.prompt().then((response) => {
-    
-        let engineerName = response.memberName;
-        let engineerId = response.memberId;
-        let engineerEmail = response.memberEmail; 
-        let engineerGithub = response.engineerGithub;
-
-    const createEngineer = new Engineer (engineerName, engineerId, engineerEmail, engineerGithub);
-    employeeArr.push(createEngineer);
-
-    console.log(createEngineer);
-    })
-};
-
-
-
 
 const setIntern = () => {
     return inquirer.prompt (
@@ -231,16 +132,16 @@ const setIntern = () => {
         const intern = new Intern(internName, internId, internEmail, internSchool);
         employeeArr.push(intern);
         console.log(intern);
+        choose();
     }
 })
 };
 
-
 // const fileName = 'dist/teamprofile.html';
 
-// const newfile = (fileName, answers)  =>{
+// const newFile = (fileName, answers)  => {
 //         let content = generatePage(answers);
-//         fs.writeFile(fileName, content, function (error) {
+//         fs.writeFile(fileName(employeeArr), content, function (error) {
             
 //             if (error) {
 //                 return console.log(error)
@@ -249,12 +150,18 @@ const setIntern = () => {
 //         });
 //     }
 
-// const end = function(){
-//     console.log("Your file is being prepared.")
-// }
+    const fileName = 'dist/teamprofile.html';
 
-
-
+    const newFile = ()  => {
+            let content = generatePage();
+            fs.writeFile(fileName(employeeArr), content, function (error) {
+                
+                if (error) {
+                    return console.log(error)
+                }
+                console.log('Your file was created successfully!')
+            });
+        }
 
 managerData();
 
