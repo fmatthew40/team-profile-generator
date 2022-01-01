@@ -62,7 +62,8 @@ function choose() {
             break;
         case 'Finished':
             console.log('Your team is set!')
-            newFile();
+            newFile(answer);
+           
     }
 })
 };
@@ -152,21 +153,70 @@ const setIntern = () => {
 
     const fileName = 'dist/teamprofile.html';
 
-    const newFile = ()  => {
-            let content = generatePage();
-            fs.writeFile(fileName(employeeArr), content, function (error) {
+    // const newFile = ()  => {
+    //         let content = generatePage();
+    //         fs.writeFile(fileName(employeeArr), content, function (error) {
                 
-                if (error) {
-                    return console.log(error)
-                }
-                console.log('Your file was created successfully!')
-            });
+    //             if (error) {
+    //                 return console.log(error)
+    //             }
+    //             console.log('Your file was created successfully!')
+    //         });
+    //     }
+    // fs.writeFile(fileName, employeeArr, (err) => {
+    //     if (err) {
+    //         return console.log(err);
+    //     }
+    //     console.log(data);
+    //     console.log("Your file was created successfully!");
+    // })
+
+
+// function newFile () {
+//     fs.writeFile(fileName, (employeeArr).toString(), function(err) {
+//         if (err) {
+//         console.log(err);
+//     } 
+//     console.log("Your file was created successfully!");
+//     })
+// };
+
+// function newFile (data) {
+//     fs.writeFile(fileName, data, function(err) {
+//         if (err) {
+//         console.log(err);
+//     } 
+//     console.log("Your file was created successfully!");
+//     })
+// };
+
+
+// const newFile = data => {
+//     fs.writeFile(fileName, generatePage(JSON.stringify(employeeArr.toString())), err => {
+//         // if there is an error 
+//         if (err) {
+//             console.log(err);
+//             return;
+//         // when the profile has been created 
+//         } else {
+//             console.log("Your team profile has been successfully created! Please check out the index.html")
+//         }
+//     })
+// };
+
+const newFile = data => {
+    fs.writeFile(fileName, generatePage(data2), err => {
+        // if there is an error 
+        if (err) {
+            console.log(err);
+            return;
+        // when the profile has been created 
+        } else {
+            console.log("Your team profile has been successfully created! Please check out the index.html")
         }
+    })
+};
+
+
 
 managerData();
-
-
-
-
-
-

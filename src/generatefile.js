@@ -19,17 +19,20 @@ function generate(data) {
     <div class="title-area text-center">My Team</div>
   </header>
 
+
+
+
   <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Manager</h5>
     <p class="card-text"> ${data.managerName} </p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">ID Number: ${ data.managerId}</li>
-    <li class="list-group-item">Office Number: ${ data.managerOffice}</li>
+    <li class="list-group-item">ID Number: ${data.managerId}</li>
+    <li class="list-group-item">Office Number: ${ data.managerEmail}</li>
   </ul>
   <div class="card-body">
-    <a href="#" class="card-link">${data.managerEmail}</a>
+    <a href="#" class="card-link">${data.managerOffice}</a>
   </div>
 </div>
 
