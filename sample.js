@@ -21,90 +21,228 @@ const setManager = () => {
       {
       type: 'input',
       message: 'Who is the manager of your team?',
-      name: 'Manager-Name'
+      name: 'Manager-Name',
+      validate: input =>{
+        if (input) {
+          return true; 
+        }else {
+          console.log('Please answer the question!');
+          return false;
+        }
+      }
       },  
       {
       type: 'input',
       message: "Enter your manager's id number.",
-      name: 'Manager-Id'
+      name: 'Manager-Id',
+      validate: input =>{
+        if (input) {
+          return true; 
+        }else {
+          console.log('Please answer the question!');
+          return false;
+        }
+      }
       }, 
       {
       type: 'input',
       message:  "Enter your manager's email address.",
-      name: 'Manager-Email'
+      name: 'Manager-Email',
+      validate: input =>{
+        if (input) {
+          return true; 
+        }else {
+          console.log('Please answer the question!');
+          return false;
+        }
+      }
       },  
       {
       type: 'input',
       message:  "Please enter your manager's office number.",
-      name: 'Manager-Office'
+      name: 'Manager-Office',
+      validate: input =>{
+        if (input) {
+          return true; 
+        }else {
+          console.log('Please answer the question!');
+          return false;
+        }
+      }
       }, 
   ]);
 };
 
-const setEmployee = () => {
+
+//portfolioData = employeeData
+const setEmployee = employeeData => {
+  if (!employeeData.employees) {
+    employeeData.employees = [];
+  }
   return inquirer.prompt([
     {
       type: 'list',
-      message: 'Would you like to add an engineer or an intern to the team? Or are you finished?',
+      message: 'Would you like to add an engineer or an intern to the team?',
       name: 'role',
-      choices: ["Engineer", "Intern", "Finished"],
+      choices: ["Engineer", "Intern"],
+      validate: input =>{
+        if (input) {
+          return true; 
+        }else {
+          console.log('Please answer the question!');
+          return false;
+        }
+      }
       },
       {
       type: 'input',
       message: "What is the intern's name?",
-      name: 'internName',
+      name: 'Intern-Name',
       when: (answer) => answer.role === "Intern",
+      validate: input =>{
+        if (input) {
+          return true; 
+        }else {
+          console.log('Please answer the question!');
+          return false;
+        }
+      }
       },
       {
       type: 'input',
       message: "What is the intern's id number?",
-      name: 'internId',
+      name: 'Intern-Id',
       when: (answer) => answer.role === "Intern",
+      validate: input =>{
+        if (input) {
+          return true; 
+        }else {
+          console.log('Please answer the question!');
+          return false;
+        }
+      }
       },
       {
       type: 'input',
       message: "What is the intern's email address?",
-      name: 'internEmail',
+      name: 'Intern-Email',
       when: (answer) => answer.role === "Intern",
+      validate: input =>{
+        if (input) {
+          return true; 
+        }else {
+          console.log('Please answer the question!');
+          return false;
+        }
+      }
       },
       {
       type: 'input',
       message: "What is the intern's school name?",
-      name: 'internSchool',
+      name: 'Intern-School',
       when: (answer) => answer.role === "Intern",
+      validate: input =>{
+        if (input) {
+          return true; 
+        }else {
+          console.log('Please answer the question!');
+          return false;
+        }
+      }
       },
       {
       type: 'input',
       message: "What is the engineer's name?",
-      name: 'engineerName1',
+      name: 'Engineer-Name',
       when: (answer) => answer.role === "Engineer",
+      validate: input =>{
+        if (input) {
+          return true; 
+        }else {
+          console.log('Please answer the question!');
+          return false;
+        }
+      }
       },
       {
       type: 'input',
       message: "What is the engineer's id number?",
-      name: 'engineerId1',
+      name: 'Engineer-Id',
       when: (answer) => answer.role === "Engineer",
+      validate: input =>{
+        if (input) {
+          return true; 
+        }else {
+          console.log('Please answer the question!');
+          return false;
+        }
+      }
       },
       {
       type: 'input',
       message: "What is the engineer's email address?",
-      name: 'engineerEmail1',
+      name: 'Engineer-Email',
       when: (answer) => answer.role === "Engineer",
+      validate: input =>{
+        if (input) {
+          return true; 
+        }else {
+          console.log('Please answer the question!');
+          return false;
+        }
+      }
       },
       {
       type: 'input',
       message: "What is the engineer's Github username?",
-      name: 'engineerGithub1',
+      name: 'Engineer-Github',
       when: (answer) => answer.role === "Engineer",
+      validate: input =>{
+        if (input) {
+          return true; 
+        }else {
+          console.log('Please answer the question!');
+          return false;
+        }
       }
-  ]);
+      },
+      {
+      type: 'list', 
+      message: 'Would you like to add another teammate?',
+      name: 'Add',
+      choices: ['Yes', 'No'],
+      }
+  ])
+  .then(answers => {
+    employeeData.employees.push(answers);
+    if (answers.Add === 'Yes') {
+      return setEmployee(employeeData);
+    } else {
+      return employeeData;
+    }
+  })
 };
 
 // projectAnswers = employeeAnswers
 setManager()
-.then(results => console.log(results))
 .then(setEmployee)
-.then(employeeAnswers => console.log(employeeAnswers));
+.then(employeeData => {
+  console.log(employeeData);
+})
+
+
+
+// .then(results => console.log(results))
+// .then(setEmployee)
+// .then(employeeAnswers => console.log(employeeAnswers))
+// .then(teamMember => {
+//   employeeData.employees.push(teamMember)
+//   if (employeeData.confirmAdd){
+//     return setEmployee(employeeData);
+//   }else {
+//     return employeeData;
+//   }
+// });
 
 
 
