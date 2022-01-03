@@ -1,5 +1,27 @@
+
+
+
+
+
 const generateCards = employeesArray => {
-  var employeeCard = employeesArray.map(({ role, Name, Id, School, Email, Github }) => {
+  const engineerCard = employeesArray.filter(employee =>{
+    switch (employee.role) {
+    case "Engineer":
+      return true;
+    case "Intern":
+      return false;
+    }
+  });
+const internCard = employeesArray.filter(employee => {
+  switch (employee.role) {
+    case "Intern":
+      return true;
+    case "Engineer":
+      return false;
+    }
+});
+
+const addEngineer = engineerCard.map(({ role, Name, Id, Email, Github }) => {
   return`
     <div class="card" style="width: 20rem;">
     <div class="card-body">
@@ -8,7 +30,25 @@ const generateCards = employeesArray => {
     <ul class="list-group list-group-flush">
       <li class="list-group-item">${Name}</li>
       <li class="list-group-item">ID Number: ${Id}</li>
-      <li class="list-group-item">Office Number: ${School}${Github}</li>
+      <li class="list-group-item">Github Address: ${Github}</li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Email: ${Email}</a>
+    </div>
+  </div>
+`;
+  });
+
+  const addIntern = internCard.map(({ role, Name, Id, Email, School }) => {
+    return`
+    <div class="card" style="width: 20rem;">
+    <div class="card-body">
+      <h5 class="card-title">${role}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">${Name}</li>
+      <li class="list-group-item">ID Number: ${Id}</li>
+      <li class="list-group-item">School: ${School}</li>
     </ul>
     <div class="card-body">
       <a href="#" class="card-link">Email: ${Email}</a>
@@ -18,7 +58,8 @@ const generateCards = employeesArray => {
 
   });
 return `
-${employeeCard.join('')}
+${addEngineer.join('')}
+${addIntern.join('')}
 `
 }
 
