@@ -1,3 +1,6 @@
+
+
+
 // link to created html page
 const generatePage = require('./src/page-setup.js');
 
@@ -9,19 +12,12 @@ const fs = require('fs');
 // const Intern = require('./lib/Intern');
 // const Engineer = require('./lib/Engineer');
 
-// const employeeArr  = [];
-
-// this is pageHTML 
-// const takeData = generatePage(name, github);
-
-
-// = promptUser  = answers = results
 const setManager = () => {
   return inquirer.prompt([
       {
       type: 'input',
       message: 'Who is the manager of your team?',
-      name: 'Manager-Name',
+      name: 'ManagerName',
       validate: input =>{
         if (input) {
           return true; 
@@ -34,7 +30,7 @@ const setManager = () => {
       {
       type: 'input',
       message: "Enter your manager's id number.",
-      name: 'Manager-Id',
+      name: 'ManagerId',
       validate: input =>{
         if (input) {
           return true; 
@@ -47,7 +43,7 @@ const setManager = () => {
       {
       type: 'input',
       message:  "Enter your manager's email address.",
-      name: 'Manager-Email',
+      name: 'ManagerEmail',
       validate: input =>{
         if (input) {
           return true; 
@@ -60,7 +56,7 @@ const setManager = () => {
       {
       type: 'input',
       message:  "Please enter your manager's office number.",
-      name: 'Manager-Office',
+      name: 'ManagerOffice',
       validate: input =>{
         if (input) {
           return true; 
@@ -74,10 +70,10 @@ const setManager = () => {
 };
 
 
-//portfolioData = employeeData
-const setEmployee = employeeData => {
-  if (!employeeData.employees) {
-    employeeData.employees = [];
+//employeeInfo = employeeData
+const setEmployee = employeeInfo => {
+  if (!employeeInfo.employees) {
+    employeeInfo.employees = [];
   }
   return inquirer.prompt([
     {
@@ -96,9 +92,8 @@ const setEmployee = employeeData => {
       },
       {
       type: 'input',
-      message: "What is the intern's name?",
-      name: 'Intern-Name',
-      when: (answer) => answer.role === "Intern",
+      message: "What is the teammate's name?",
+      name: 'Name',
       validate: input =>{
         if (input) {
           return true; 
@@ -110,9 +105,8 @@ const setEmployee = employeeData => {
       },
       {
       type: 'input',
-      message: "What is the intern's id number?",
-      name: 'Intern-Id',
-      when: (answer) => answer.role === "Intern",
+      message: "What is the teammate's id number?",
+      name: 'Id',
       validate: input =>{
         if (input) {
           return true; 
@@ -124,9 +118,8 @@ const setEmployee = employeeData => {
       },
       {
       type: 'input',
-      message: "What is the intern's email address?",
-      name: 'Intern-Email',
-      when: (answer) => answer.role === "Intern",
+      message: "What is the teammate's email address?",
+      name: 'Email',
       validate: input =>{
         if (input) {
           return true; 
@@ -139,7 +132,7 @@ const setEmployee = employeeData => {
       {
       type: 'input',
       message: "What is the intern's school name?",
-      name: 'Intern-School',
+      name: 'School',
       when: (answer) => answer.role === "Intern",
       validate: input =>{
         if (input) {
@@ -152,50 +145,8 @@ const setEmployee = employeeData => {
       },
       {
       type: 'input',
-      message: "What is the engineer's name?",
-      name: 'Engineer-Name',
-      when: (answer) => answer.role === "Engineer",
-      validate: input =>{
-        if (input) {
-          return true; 
-        }else {
-          console.log('Please answer the question!');
-          return false;
-        }
-      }
-      },
-      {
-      type: 'input',
-      message: "What is the engineer's id number?",
-      name: 'Engineer-Id',
-      when: (answer) => answer.role === "Engineer",
-      validate: input =>{
-        if (input) {
-          return true; 
-        }else {
-          console.log('Please answer the question!');
-          return false;
-        }
-      }
-      },
-      {
-      type: 'input',
-      message: "What is the engineer's email address?",
-      name: 'Engineer-Email',
-      when: (answer) => answer.role === "Engineer",
-      validate: input =>{
-        if (input) {
-          return true; 
-        }else {
-          console.log('Please answer the question!');
-          return false;
-        }
-      }
-      },
-      {
-      type: 'input',
       message: "What is the engineer's Github username?",
-      name: 'Engineer-Github',
+      name: 'Github',
       when: (answer) => answer.role === "Engineer",
       validate: input =>{
         if (input) {
@@ -213,44 +164,28 @@ const setEmployee = employeeData => {
       choices: ['Yes', 'No'],
       }
   ])
-  .then(answers => {
-    employeeData.employees.push(answers);
-    if (answers.Add === 'Yes') {
-      return setEmployee(employeeData);
-    } else {
-      return employeeData;
+  .then(employeeData => {
+    employeeInfo.employees.push(employeeData);
+    if (employeeData.Add === "Yes") {
+      return setEmployee(employeeInfo);
+    } else if (employeeData.Add === "No") {
+      return employeeInfo;
     }
-  })
+  });
 };
 
 // projectAnswers = employeeAnswers
 setManager()
 .then(setEmployee)
-.then(employeeData => {
-  console.log(employeeData);
+.then(employeeInfo => {
+  console.log(employeeInfo);
+  const HTMLgen = generatePage(employeeInfo);
+
+  fs.writeFile('./dist/teamprofilepage.html', HTMLgen, err => {
+    if (err) throw new Error(err);
+    console.log('Your file was created sucessfully!')
+  })
 })
-
-
-
-// .then(results => console.log(results))
-// .then(setEmployee)
-// .then(employeeAnswers => console.log(employeeAnswers))
-// .then(teamMember => {
-//   employeeData.employees.push(teamMember)
-//   if (employeeData.confirmAdd){
-//     return setEmployee(employeeData);
-//   }else {
-//     return employeeData;
-//   }
-// });
-
-
-
-// fs.writeFile('./dist/teamprofilepage.html', generatePage(name, github), err => {
-//   if (err) throw new Error(err);
-
-//   console.log('Your file was created successfully!');
-// });
 
 
 
