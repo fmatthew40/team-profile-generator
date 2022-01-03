@@ -184,6 +184,16 @@ setManager()
   fs.writeFile('./dist/teamprofilepage.html', HTMLgen, err => {
     if (err) throw new Error(err);
     console.log('Your file was created sucessfully!')
+
+  fs.copyFile('./src/stylesheet.css', './dist/style.css', err=> {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log('The style sheet that goes with your file was successfully copied!')
+  })
+  
+
   })
 })
 

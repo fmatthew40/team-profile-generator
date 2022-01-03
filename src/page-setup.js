@@ -23,37 +23,41 @@ const internCard = employeesArray.filter(employee => {
 
 const addEngineer = engineerCard.map(({ role, Name, Id, Email, Github }) => {
   return`
-    <div class="card" style="width: 20rem;">
-    <div class="card-body">
-      <h5 class="card-title">${role}</h5>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">${Name}</li>
-      <li class="list-group-item">ID Number: ${Id}</li>
-      <li class="list-group-item">Github Address: ${Github}</li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Email: ${Email}</a>
-    </div>
+  
+  <div class="col-sm-6">
+  <div class="card">
+  <div class="card-body">
+  <h5 class="card-title">${role}</h5>
+  <ul>
+    <li>Name: ${Name}</li>
+    <li>ID Number: ${Id}</li>
+    <li>Github Link: <a href="https://github.com/${Github}">${Github}</a></a>
+  </ul>
+  <a href="#" class=""><a href="mailto:${Email}">Email: ${Email}</a>
+  </div>
+  </div>
+  </div>
   </div>
 `;
   });
 
   const addIntern = internCard.map(({ role, Name, Id, Email, School }) => {
     return`
-    <div class="card" style="width: 20rem;">
+ 
+    <div class="col-sm-6">
+    <div class="card">
     <div class="card-body">
-      <h5 class="card-title">${role}</h5>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">${Name}</li>
-      <li class="list-group-item">ID Number: ${Id}</li>
-      <li class="list-group-item">School: ${School}</li>
+    <h5 class="card-title">${role}</h5>
+    <ul>
+      <li>Name: ${Name}</li>
+      <li>ID Number: ${Id}</li>
+      <li>School: ${School}</li>
     </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Email: ${Email}</a>
+    <a href="#" class=""><a href="mailto:${Email}">Email: ${Email}</a>
     </div>
-  </div>
+    </div>
+    </div>
+    </div>
 `;
 
   });
@@ -76,31 +80,36 @@ module.exports = templateData => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="./src/stylesheet.css">
+    <link rel="stylesheet" href="./dist/stylesheet.css">
     <title>Team Profile Generator</title>
 </head>
-<header class=" box h1 alert alert-info border border-info">My Team
+<header class="top box h1 alert alert-info border border-info">My Team
 </header>
 <body>
 
-    <div class="card" style="width: 20rem;">
-        <div class="card-body">
-          <h5 class="card-title">Manager</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">${header.ManagerName}</li>
-          <li class="list-group-item">ID Number: ${header.ManagerId}</li>
-          <li class="list-group-item">Office Number: ${header.ManagerOffice}</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Email: ${header.ManagerEmail}</a>
-        </div>
-      </div>
+
+<div class="col-sm-6">
+<div class="card">
+<div class="card-body">
+<h5 class="card-title">Manager</h5>
+<ul>
+  <li>Name: ${header.ManagerName}</li>
+  <li>ID Number: ${header.ManagerId}</li>
+  <li>Office Number: ${header.ManagerOffice}</li>
+</ul>
+<a href="#" class=""><a href="mailto:${header.ManagerEmail}">Email: ${header.ManagerEmail}</a>
+</div>
+</div>
+</div>
+</div>
 
       ${generateCards(employees)}
-
 
 </body>
 </html>
   `;
 };
+
+
+
+
