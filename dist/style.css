@@ -13,4 +13,6 @@ header {
     margin-bottom: 15px;
     display: inline-block;
     border: black solid; 
+    margin-right: auto;
+    margin-left: 210px
 }

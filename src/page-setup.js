@@ -31,7 +31,7 @@ const addEngineer = engineerCard.map(({ role, Name, Id, Email, Github }) => {
   <ul>
     <li>Name: ${Name}</li>
     <li>ID Number: ${Id}</li>
-    <li>Github Link: <a href="https://github.com/${Github}">${Github}</a></a>
+    <li>Github Link: <a href="https://github.com/${Github}" target="_blank">${Github}</a></a>
   </ul>
   <a href="#" class=""><a href="mailto:${Email}">Email: ${Email}</a>
   </div>
