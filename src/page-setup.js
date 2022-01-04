@@ -24,8 +24,8 @@ const internCard = employeesArray.filter(employee => {
 const addEngineer = engineerCard.map(({ role, Name, Id, Email, Github }) => {
   return`
   
-  <div class="col-sm-6">
-  <div class="card">
+  <div class="crd col-sm-6">
+  <div class="row">
   <div class="card-body">
   <h5 class="card-title">${role}</h5>
   <ul>
@@ -44,8 +44,8 @@ const addEngineer = engineerCard.map(({ role, Name, Id, Email, Github }) => {
   const addIntern = internCard.map(({ role, Name, Id, Email, School }) => {
     return`
  
-    <div class="col-sm-6">
-    <div class="card">
+    <div class="crd col-sm-6">
+    <div class="row">
     <div class="card-body">
     <h5 class="card-title">${role}</h5>
     <ul>
@@ -80,7 +80,7 @@ module.exports = templateData => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="./dist/stylesheet.css">
+    <link rel="stylesheet" href="./style.css">
     <title>Team Profile Generator</title>
 </head>
 <header class="top box h1 alert alert-info border border-info">My Team
@@ -88,8 +88,8 @@ module.exports = templateData => {
 <body>
 
 
-<div class="col-sm-6">
-<div class="card">
+<div class="crd col-sm-6">
+<div class="row">
 <div class="card-body">
 <h5 class="card-title">Manager</h5>
 <ul>

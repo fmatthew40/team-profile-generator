@@ -1,8 +1,16 @@
 header {
     text-align: center;
-    background-color: rgb(152, 195, 209);
 }
 
 .top {
     background-color: lightblue; 
+}
+
+.crd {
+    width: 25%; 
+    text-align: center;
+    margin: auto;
+    margin-bottom: 15px;
+    display: inline-block;
+    border: black solid; 
 }
