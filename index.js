@@ -4,7 +4,6 @@
 // link to created html page
 const generatePage = require('./src/page-setup.js');
 
-
 const inquirer = require('inquirer');
 const fs = require('fs');
 
@@ -68,7 +67,6 @@ const setManager = () => {
       }, 
   ]);
 };
-
 
 //employeeInfo = employeeData
 const setEmployee = employeeInfo => {
@@ -192,7 +190,7 @@ setManager()
     }
     console.log('The style sheet that goes with your file was successfully copied!')
   })
-  
+
 
   })
 })
